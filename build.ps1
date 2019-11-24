@@ -48,8 +48,8 @@ Switch($true){
             Copy-Item $_.FullName "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public"
         }
 
-        Copy-Item "$PSModuleRoot\PSVagrant.psm1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
-        Copy-Item "$PSModuleRoot\PSVagrant.psd1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
+        Copy-Item "$PSScriptRoot\PSVagrant.psm1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
+        Copy-Item "$PSScriptRoot\PSVagrant.psd1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
 
         #Verification of contents
         Get-ChildItem -Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant" -Recurse
