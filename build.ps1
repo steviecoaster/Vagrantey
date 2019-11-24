@@ -45,7 +45,9 @@ Switch($true){
         Get-ChildItem $PSScriptRoot\Public\*.ps1 | Foreach-Object {
 
             #Get-Content $_.FullName | Add-Content "$($env:Build_ArtifactStagingDirectory)\PSVagrant\PSVagrant.psm1"
-            $null = New-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public" -ItemType Directory
+            If(!(Test-Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public")){
+                $null = New-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public" -ItemType Directory
+            }
             Copy-Item $_.FullName "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public\"
         }
 
