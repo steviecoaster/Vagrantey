@@ -40,26 +40,34 @@ function Set-VagrantConfig {
 
         if (!$Config) {
 
-            if ($IsWindows) {
-            
+            if($PSVersionTable.PSEdition -eq "Desktop"){
+
                 $root = $env:USERPROFILE
-            
             }
+            else{
+                if ($IsWindows) {
             
-            if ($IsMacOS) {
-            
-                $root = $env:HOME
-            
-            }
-            
-            if ($IsLinux) {
+                    $root = $env:USERPROFILE
+                
+                }
+                
+                if ($IsMacOS) {
+                
+                    $root = $env:HOME
+                
+                }
+                
+                if ($IsLinux) {
+    
+                    $root = $env:HOME
+                
+                }
 
-                $root = $env:HOME
-            
             }
+            
         
-            if (!(Test-Path "$root\Config\VagrantConfig.json")) {
-
+            if (!(Test-Path "$root\vagrantey\VagrantConfig.json")) {
+                $null = New-Item "$root\vagrantey" -ItemType Directory
                 $null = New-Item "$root\vagrantey\VagrantConfig.json"
             
             }
@@ -89,6 +97,6 @@ function Set-VagrantConfig {
                 $config = [pscustomobject]@{ $Name = $Path }
             }
         }
-        $config | ConvertTo-Json | Set-Content "$(Split-Path -Parent $PSScriptRoot)\Config\VagrantConfig.json"
+        $config | ConvertTo-Json | Set-Content "$root\vagrantey\VagrantConfig.json"
     }
 }
