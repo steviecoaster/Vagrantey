@@ -21,40 +21,72 @@ function Set-VagrantConfig {
     
     [cmdletBinding()]
     Param(
-        [Parameter(Mandatory,Position=0)]
+        [Parameter(Mandatory, Position = 0)]
         [String]
         $Name,
 
-        [Parameter(Mandatory,Position=1)]
-        [ValidateScript({Test-Path $_})]
+        [Parameter(Mandatory, Position = 1)]
+        [ValidateScript( { Test-Path $_ })]
         [String]
-        $Path
+        $Path,
+
+        [Parameter()]
+        [String]
+        $Config
+
     )
 
     begin {
 
-        if (!(Test-Path "$(Split-Path -Parent $PSScriptRoot)\Config\VagrantConfig.json")) {
+        if (!$Config) {
 
-            $null = New-Item "$(Split-Path -Parent $PSScriptRoot)\Config\VagrantConfig.json"
+            if ($IsWindows) {
+            
+                $root = $env:USERPROFILE
+            
+            }
+            
+            if ($IsMacOS) {
+            
+                $root = $env:HOME
+            
+            }
+            
+            if ($IsLinux) {
+
+                $root = $env:HOME
+            
+            }
+        
+            if (!(Test-Path "$root\Config\VagrantConfig.json")) {
+
+                $null = New-Item "$root\vagrantey\VagrantConfig.json"
+            
+            }
         }
+
         else {
-            $config = Get-VagrantConfig "$(Split-Path -Parent $PSScriptRoot)\Config\VagrantConfig.json"
+            
+            $config = Get-VagrantConfig "$root\vagrantey\VagrantConfig.json"
+        
         }
+
     }
 
     process {
     
-        If($config.$name){
+        If ($config.$name) {
             $config.$Name = $Path
         }
+        
         else {
 
-            if($config){
-            $config | Add-Member -MemberType NoteProperty -Name $Name -Value $Path
+            if ($config) {
+                $config | Add-Member -MemberType NoteProperty -Name $Name -Value $Path
             }
 
-            else{
-                $config = [pscustomobject]@{ $Name = $Path}
+            else {
+                $config = [pscustomobject]@{ $Name = $Path }
             }
         }
         $config | ConvertTo-Json | Set-Content "$(Split-Path -Parent $PSScriptRoot)\Config\VagrantConfig.json"

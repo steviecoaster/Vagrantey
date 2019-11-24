@@ -1,11 +1,30 @@
 $public = Get-ChildItem $PSScriptRoot\Public -Filter *.ps1
-if (!(Test-Path $PSScriptRoot\Config)) {
+
+if ($IsWindows) {
+            
+    $root = $env:USERPROFILE
+
+}
+
+if ($IsMacOS) {
+
+    $root = $env:HOME
+
+}
+
+if ($IsLinux) {
+
+    $root = $env:HOME
+
+}
+
+if (!(Test-Path "$root\vagrantey\")) {
 
     $needsConfig = $true
 }
 
 else {
-    $config = Get-ChildItem $PSScriptRoot\Config -Filter *.json
+    $config = Get-ChildItem "$root\vagrantey\" -Filter *.json
 }
 
 foreach ($file in $public ) {

@@ -3,12 +3,40 @@ function Get-VagrantConfig {
     param(
         [Parameter()]
         [String]
-        $Path = "$(Split-Path -Parent $PSScriptRoot)\config\VagrantConfig.json"
+        $Path
     )
 
     process {
 
-        Get-Content $Path | ConvertFrom-Json
+        if(!$Path){
+
+            if ($IsWindows) {
+            
+                $root = $env:USERPROFILE
+            
+            }
+            
+            if ($IsMacOS) {
+            
+                $root = $env:HOME
+            
+            }
+            
+            if ($IsLinux) {
+
+                $root = $env:HOME
+            
+            }
+            
+            Get-Content "$root\vagrantey\VagrantConfig.json" | ConvertFrom-Json
+        }
+
+        else{
+
+            Get-Content $Path | ConvertFrom-Json
+            
+        }
+        
     }
 
 }
