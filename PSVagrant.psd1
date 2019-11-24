@@ -30,7 +30,7 @@ CompanyName = 'Unknown'
 Copyright = '2019 Chocolatey Software, Inc.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Enables working with Vagrant environments in a friendly manner. Configure friendly names, and a path to the Vagrant file, and then use native PowerShell commands to interact with them'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
