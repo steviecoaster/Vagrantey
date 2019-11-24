@@ -28,7 +28,7 @@ Switch($true){
             Install-Module -Name Pester -SkipPublisherCheck -Force
         }
 
-        Invoke-Pester -Script $TestPath -OutputFile "$($env:Build_ArtifactStagingDirectory)\PSVagrant.Results.xml" -OutputFormat 'NUnitXml'
+        Invoke-Pester -Script $TestPath -OutputFile "$($env:Build_ArtifactStagingDirectory)\Vagrantey.Results.xml" -OutputFormat 'NUnitXml'
 
         #
         Get-ChildItem $env:Build_ArtifactStagingDirectory
@@ -36,30 +36,30 @@ Switch($true){
 
     $Build {
 
-        If(Test-Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant"){
-            Remove-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant" -Recurse -Force
+        If(Test-Path "$($env:Build_ArtifactStagingDirectory)\Vagrantey"){
+            Remove-Item "$($env:Build_ArtifactStagingDirectory)\Vagrantey" -Recurse -Force
         }
 
-        $null = New-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant" -ItemType Directory
+        $null = New-Item "$($env:Build_ArtifactStagingDirectory)\Vagrantey" -ItemType Directory
 
         Get-ChildItem $PSScriptRoot\Public\*.ps1 | Foreach-Object {
 
-            #Get-Content $_.FullName | Add-Content "$($env:Build_ArtifactStagingDirectory)\PSVagrant\PSVagrant.psm1"
-            If(!(Test-Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public")){
-                $null = New-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public" -ItemType Directory
+            #Get-Content $_.FullName | Add-Content "$($env:Build_ArtifactStagingDirectory)\Vagrantey\Vagrantey.psm1"
+            If(!(Test-Path "$($env:Build_ArtifactStagingDirectory)\Vagrantey\public")){
+                $null = New-Item "$($env:Build_ArtifactStagingDirectory)\Vagrantey\public" -ItemType Directory
             }
-            Copy-Item $_.FullName "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public\"
+            Copy-Item $_.FullName "$($env:Build_ArtifactStagingDirectory)\Vagrantey\public\"
         }
 
-        Copy-Item "$PSScriptRoot\PSVagrant.psm1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
-        Copy-Item "$PSScriptRoot\PSVagrant.psd1" "$($env:Build_ArtifactStagingDirectory)\PSVagrant"
+        Copy-Item "$PSScriptRoot\Vagrantey.psm1" "$($env:Build_ArtifactStagingDirectory)\Vagrantey"
+        Copy-Item "$PSScriptRoot\Vagrantey.psd1" "$($env:Build_ArtifactStagingDirectory)\Vagrantey"
 
         #Verification of contents
-        Get-ChildItem -Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant" -Recurse
+        Get-ChildItem -Path "$($env:Build_ArtifactStagingDirectory)\Vagrantey" -Recurse
 
         #Verify we can load the module and see cmdlets
-        Import-Module "$($env:Build_ArtifactStagingDirectory)\PSVagrant\PSVagrant.psd1"
-        Get-Command -Module PSVagrant
+        Import-Module "$($env:Build_ArtifactStagingDirectory)\Vagrantey\Vagrantey.psd1"
+        Get-Command -Module Vagrantey
 
     }
 
@@ -69,7 +69,7 @@ Switch($true){
         Try {
     
             $deployCommands = @{
-                Path = (Resolve-Path -Path "$($env:Build_ArtifactStagingDirectory)\PSVagrant")
+                Path = (Resolve-Path -Path "$($env:Build_ArtifactStagingDirectory)\Vagrantey")
                 NuGetApiKey = $env:NuGetApiKey
                 ErrorAction = 'Stop'
             }
