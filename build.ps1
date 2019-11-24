@@ -16,6 +16,7 @@ Param(
 #Make some variables, shall we?
 $innvocationPath = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
 $PSModuleRoot = Split-Path -Parent $innvocationPath
+$PSModuleRoot
 $TestPath = Join-Path $PSModuleRoot "Tests"
 
 #Do Stuff based on passed Args
@@ -41,7 +42,7 @@ Switch($true){
 
         $null = New-Item "$($env:Build_ArtifactStagingDirectory)\PSVagrant" -ItemType Directory
 
-        Get-ChildItem $PSModuleRoot\Public\*.ps1 | Foreach-Object {
+        Get-ChildItem $PSScriptRoot\Public\*.ps1 | Foreach-Object {
 
             #Get-Content $_.FullName | Add-Content "$($env:Build_ArtifactStagingDirectory)\PSVagrant\PSVagrant.psm1"
             Copy-Item $_.FullName "$($env:Build_ArtifactStagingDirectory)\PSVagrant\public"
