@@ -68,7 +68,7 @@ function Set-VagrantConfig {
         
             if (!(Test-Path "$root\vagrantey\VagrantConfig.json")) {
                 $null = New-Item "$root\vagrantey" -ItemType Directory
-                $null = New-Item "$root\vagrantey\VagrantConfig.json"
+                
             
             }
         }
