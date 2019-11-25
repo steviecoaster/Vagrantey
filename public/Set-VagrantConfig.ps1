@@ -39,43 +39,24 @@ function Set-VagrantConfig {
     begin {
 
         if (!$Config) {
-
-            if($PSVersionTable.PSEdition -eq "Desktop"){
-
-                $root = $env:USERPROFILE
-            }
-            else{
-                if ($IsWindows) {
-            
-                    $root = $env:USERPROFILE
-                
-                }
-                
-                if ($IsMacOS) {
-                
-                    $root = $env:HOME
-                
-                }
-                
-                if ($IsLinux) {
-    
-                    $root = $env:HOME
-                
-                }
-
-            }
-            
         
-            if (!(Test-Path "$root\vagrantey\VagrantConfig.json")) {
-                $null = New-Item "$root\vagrantey" -ItemType Directory
+            if (!(Test-Path "$(Get-RootPath)\vagrantey\VagrantConfig.json")) {
                 
+                $null = New-Item "$(Get-RootPath)\vagrantey" -ItemType Directory
             
             }
+
+            else {
+
+                $configuration = Get-VagrantConfig
+            
+            }
+
         }
 
         else {
             
-            $config = Get-VagrantConfig "$root\vagrantey\VagrantConfig.json"
+            $configuration = Get-VagrantConfig $Config
         
         }
 
@@ -83,20 +64,20 @@ function Set-VagrantConfig {
 
     process {
     
-        If ($config.$name) {
-            $config.$Name = $Path
+        If ($configuration.$name) {
+            $configuration.$Name = $Path
         }
         
         else {
 
-            if ($config) {
-                $config | Add-Member -MemberType NoteProperty -Name $Name -Value $Path
+            if ($configuration) {
+                $configuration | Add-Member -MemberType NoteProperty -Name $Name -Value $Path
             }
 
             else {
-                $config = [pscustomobject]@{ $Name = $Path }
+                $configuration= [pscustomobject]@{ $Name = $Path }
             }
         }
-        $config | ConvertTo-Json | Set-Content "$root\vagrantey\VagrantConfig.json"
+        $configuration | ConvertTo-Json | Set-Content "$(Get-RootPath)\vagrantey\VagrantConfig.json"
     }
 }
