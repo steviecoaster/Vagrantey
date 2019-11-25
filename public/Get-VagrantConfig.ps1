@@ -10,22 +10,29 @@ function Get-VagrantConfig {
 
         if(!$Path){
 
-            if ($IsWindows) {
-            
-                $root = $env:USERPROFILE
-            
-            }
-            
-            if ($IsMacOS) {
-            
-                $root = $env:HOME
-            
-            }
-            
-            if ($IsLinux) {
+            if($PSVersionTable.PSEdition -eq "Desktop"){
 
-                $root = $env:HOME
+                $root = $env:USERPROFILE
+            }
+            else{
+                if ($IsWindows) {
             
+                    $root = $env:USERPROFILE
+                
+                }
+                
+                if ($IsMacOS) {
+                
+                    $root = $env:HOME
+                
+                }
+                
+                if ($IsLinux) {
+    
+                    $root = $env:HOME
+                
+                }
+
             }
             
             Get-Content "$root\vagrantey\VagrantConfig.json" | ConvertFrom-Json
