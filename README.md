@@ -1,5 +1,7 @@
 # Vagrantey
 
+[![Build Status](https://dev.azure.com/stephen0130/Vagrantey/_apis/build/status/Vagrantey?branchName=master)](https://dev.azure.com/stephen0130/Vagrantey/_build/latest?definitionId=17&branchName=master)
+
 Working between multiple vagrant environements can really suck. You need to know their paths, and be in that directory to `vagrant up` the VagrantFile. This module streamlines that process by enabling you to configure all of your vagrant environments with a friendly name, and a path, which is stored in a json-formatted configuration file.
 
 Starting up your various environments is then a simple `Start-VagrantEnvironment -Environment $FriendlyName` away. Similar functionality exists for destroying those environments.
