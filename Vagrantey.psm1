@@ -11,7 +11,7 @@ if (!(Test-Path "$(Get-RootPath)\vagrantey\")) {
 }
 
 else {
-    $config = Get-ChildItem "$root\vagrantey\" -Filter *.json
+    $config = Get-ChildItem "$(Get-RootPath)\vagrantey\" -Filter *.json
 }
 
 
