@@ -17,7 +17,10 @@ cd /users/svalding/Documents/Git
 git clone https://github.com/steviecoaster/Vagrantey.git
 ipmo ./Vagrantey/Vagrantey.psd1
 ```
-I'll get this on the gallery once I have time to build a proper build pipeline.
+
+From the Gallery:
+
+`Install-Module Vagrantey -Force`
 
 The following cmdlets are available:
 
