@@ -1,8 +1,7 @@
-Get-ChildItem $PSScriptRoot
+$files = Get-ChildItem $PSScriptRoot -Recurse -Filter *.ps1
 
-$public = Get-ChildItem $PSScriptRoot\public -Filter *.ps1
-$private = Get-ChildItem $PSScriptRoot\private -Filter *.ps1
-foreach ($file in @($public + $private) ) {
+
+foreach ($file in $files) {
 
     . $file.Fullname
 }
