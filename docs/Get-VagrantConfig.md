@@ -1,6 +1,6 @@
 ---
-external help file: PSVagrant-help.xml
-Module Name: PSVagrant
+external help file: Vagrantey-help.xml
+Module Name: Vagrantey
 online version:
 schema: 2.0.0
 ---

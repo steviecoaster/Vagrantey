@@ -5,31 +5,31 @@ online version:
 schema: 2.0.0
 ---
 
-# Start-VagrantEnvironment
+# Stop-VagrantEnvironment
 
 ## SYNOPSIS
-Start a vagrant environment by specifying it's friendly name
+Stop a vagrant environment by specifying it's friendly name
 
 ## SYNTAX
 
 ```
-Start-VagrantEnvironment [-Environment] <String> [<CommonParameters>]
+Stop-VagrantEnvironment [-Environment] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Reads the backend path to a vagrant directory and starts that environment based on the environment's friendly name
+Reads the backend path to a vagrant directory and stops that environment based on the environment's friendly name
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Start-VagrantEnvironment -Environment CCM
+Stop-VagrantEnvironment -Environment CCM
 ```
 
 ## PARAMETERS
 
 ### -Environment
-The friendly name of the vagrant environment to start
+The friendly name of the vagrant environment to stop
 
 ```yaml
 Type: String

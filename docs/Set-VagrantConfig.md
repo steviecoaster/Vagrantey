@@ -1,6 +1,6 @@
 ---
-external help file: PSVagrant-help.xml
-Module Name: PSVagrant
+external help file: Vagrantey-help.xml
+Module Name: Vagrantey
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Configure different environments for your system
 ## SYNTAX
 
 ```
-Set-VagrantConfig [-Name] <String> [-Path] <String> [<CommonParameters>]
+Set-VagrantConfig [-Name] <String> [-Path] <String> [-Config <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,6 +53,21 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Config
+{{ Fill Config Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
