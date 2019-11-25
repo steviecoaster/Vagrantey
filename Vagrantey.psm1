@@ -1,3 +1,5 @@
+Get-ChildItem $PSScriptRoot
+
 $public = Get-ChildItem $PSScriptRoot\public -Filter *.ps1
 $private = Get-ChildItem $PSScriptRoot\private -Filter *.ps1
 foreach ($file in @($public + $private) ) {
