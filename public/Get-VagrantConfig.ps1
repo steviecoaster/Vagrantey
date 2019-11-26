@@ -1,4 +1,28 @@
 function Get-VagrantConfig {
+    <#
+    .SYNOPSIS
+    Returns current configuration for this module
+    
+    .DESCRIPTION
+    Returns the json config file for the module as an object
+    
+    .PARAMETER Path
+    If you store your config outside of the module default, use Path to specify it
+    
+    .EXAMPLE
+    Get-VagrantConfig
+
+    Return default configuration
+
+    .EXAMPLE
+    Get-VagrantConfig -Path C:\vagrantey\config.json
+
+    Return the configuration found in C:\vagrantey\config.json
+    
+    .NOTES
+    
+    #>
+    
     [cmdletBinding()]
     param(
         [Parameter()]

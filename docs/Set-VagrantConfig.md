@@ -26,6 +26,11 @@ Specify the friendly name of the environment, as well as the Path to the Vagrant
 Set-VagrantConfig -Name Foo -Path /my/path/to/foo
 ```
 
+### EXAMPLE 2
+```
+Set-VagrantConfig -Name Foo -Path /my/path/to/foo -Config C:\vagrantey\config.json
+```
+
 ## PARAMETERS
 
 ### -Name
@@ -59,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -Config
-{{ Fill Config Description }}
+The config file to save information into, otherwise uses module default
 
 ```yaml
 Type: String

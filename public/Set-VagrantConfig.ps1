@@ -11,9 +11,15 @@ function Set-VagrantConfig {
     
     .PARAMETER Path
     The path to the vagrant file
+
+    .PARAMETER Config
+    The config file to save information into, otherwise uses module default
     
     .EXAMPLE
     Set-VagrantConfig -Name Foo -Path /my/path/to/foo
+
+    .EXAMPLE
+    Set-VagrantConfig -Name Foo -Path /my/path/to/foo -Config C:\vagrantey\config.json
     
     .NOTES
     Specifying the actual vagrant file is not necessary. The path is simply the path to where the vagrantfile resides on disk
