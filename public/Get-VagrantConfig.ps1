@@ -59,7 +59,13 @@ function Get-VagrantConfig {
 
             }
             
-            Get-Content "$root\vagrantey\VagrantConfig.json" | ConvertFrom-Json
+            $defaultConfigPath = "$root\vagrantey\VagrantConfig.json"
+            if (Test-Path -Path $defaultConfigPath) {
+                Get-Content $defaultConfigPath | ConvertFrom-Json
+            }
+            else {
+                Write-Warning "No config found. Run 'Set-VagrantConfig' to configure vagrant environments. For help run Get-Help Set-VagrantConfig -Examples"
+            }
         }
 
         else{
