@@ -24,10 +24,10 @@ GUID = '85dd4437-2a65-419c-b0bc-6765af73ddc7'
 Author = 'Stephen Valdinger'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = ''
 
 # Copyright statement for this module
-Copyright = '2019 Chocolatey Software, Inc.'
+Copyright = 'Stephen Valdinger'
 
 # Description of the functionality provided by this module
 Description = 'Enables working with Vagrant environments in a friendly manner. Configure friendly names, and a path to the Vagrant file, and then use native PowerShell commands to interact with them'
@@ -69,7 +69,7 @@ Description = 'Enables working with Vagrant environments in a friendly manner. C
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Get-VagrantConfig','Set-VagrantConfig','Get-VagrantEnvironment','Start-VagrantEnvironment','Stop-VagrantEnvironment','Remove-VagrantEnvironment')
+FunctionsToExport = @('Get-VagrantConfig','Set-VagrantConfig','Get-VagrantEnvironment','Start-VagrantEnvironment','Stop-VagrantEnvironment','Remove-VagrantEnvironment','Invoke-VagrantProvisioner')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
