@@ -71,17 +71,17 @@ function Set-VagrantConfig {
     process {
     
         If ($configuration.$name) {
-            $configuration.$Name = $Path
+            $configuration.$Name = $((Resolve-Path $Path).Path)
         }
         
         else {
 
             if ($configuration) {
-                $configuration | Add-Member -MemberType NoteProperty -Name $Name -Value $Path
+                $configuration | Add-Member -MemberType NoteProperty -Name $Name -Value $((Resolve-Path $Path).Path)
             }
 
             else {
-                $configuration= [pscustomobject]@{ $Name = $Path }
+                $configuration= [pscustomobject]@{ $Name = $((Resolve-Path $Path).Path) }
             }
         }
         $configuration | ConvertTo-Json | Set-Content "$(Get-RootPath)\vagrantey\VagrantConfig.json"
