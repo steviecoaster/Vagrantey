@@ -12,8 +12,14 @@ Start a vagrant environment by specifying it's friendly name
 
 ## SYNTAX
 
+### Environment
 ```
-Start-VagrantEnvironment [-Environment] <String> [<CommonParameters>]
+Start-VagrantEnvironment [-Environment] <String> [-Name <String>] [<CommonParameters>]
+```
+
+### Id
+```
+Start-VagrantEnvironment -Id <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,11 +39,41 @@ The friendly name of the vagrant environment to start
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Environment
 Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+Name of host in Vagrantfile to bring online, if multiple are defined in Vagrantfile.
+
+```yaml
+Type: String
+Parameter Sets: Environment
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+Id of Vagrant environment to start, not tied to Environment parameter.
+
+```yaml
+Type: String
+Parameter Sets: Id
+Aliases:
+
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
