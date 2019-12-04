@@ -12,7 +12,7 @@
 RootModule = 'Vagrantey.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.3'
+ModuleVersion = '0.1.4'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -107,7 +107,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'v 0.1.3 - Fixes an issue where running Get-VagrantConfig against a non-existing config throws an obscure error.'
+        ReleaseNotes = 'v 0.1.4 - Fixes an issue where running Set-Config against a relative path did not resolve. Adds Invoke-VagrantProvisioner.'
 
     } # End of PSData hashtable
 
