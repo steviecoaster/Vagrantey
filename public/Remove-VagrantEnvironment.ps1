@@ -57,7 +57,7 @@ function Remove-VagrantEnvironment {
         If($PSCmdlet.ShouldProcess($Environment,"Destroy specified environment")){
 
             Push-Location "$($config.$Environment)"
-            Start-Process vagrant -ArgumentList @("destroy","-f")
+            Start-Process vagrant -ArgumentList @("destroy","-f") -Wait
             Pop-Location
         }
     }
