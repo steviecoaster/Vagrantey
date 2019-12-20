@@ -18,7 +18,7 @@ function Remove-VagrantPlugin {
     
     [cmdletBinding(ConfirmImpact="High",SupportsShouldProcess)]
     Param(
-        [Parameter(Mandatory,Position=0,ValueFromPipeline)]
+        [Parameter(Mandatory,Position=0,ValueFromPipeline,ValueFromPipelineByPropertyName)]
         [ArgumentCompleter(
             {
                 param($Command,$Parameter,$WordToComplete,$CommandAst,$FakeBoundParams)
@@ -35,6 +35,7 @@ function Remove-VagrantPlugin {
             }
         )]
         [String]
+        [Alias('Name')]
         $Plugin
     )
 

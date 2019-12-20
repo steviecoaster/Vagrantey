@@ -18,7 +18,7 @@ function Install-VagrantPlugin {
     
     [cmdletBinding()]
     Param(
-        [Parameter(Mandatory,Position=0,ValueFromPipeline)]
+        [Parameter(Mandatory,Position=0,ValueFromPipeline,ValueFromPipelineByPropertyName)]
         [ArgumentCompleter(
             {
                 param($Command,$Parameter,$WordToComplete,$CommandAst,$FakeBoundParams)
@@ -35,6 +35,7 @@ function Install-VagrantPlugin {
             }
         )]
         [String]
+        [Alias('Name')]
         $Plugin
     )
 
