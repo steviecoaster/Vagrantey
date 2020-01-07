@@ -5,72 +5,51 @@ online version:
 schema: 2.0.0
 ---
 
-# Start-VagrantEnvironment
+# New-VagrantSnapshot
 
 ## SYNOPSIS
-Start a vagrant environment by specifying it's friendly name
+Create a snapshot of a Vagrant VM
 
 ## SYNTAX
 
-### Environment
+### BuiltIn (Default)
 ```
-Start-VagrantEnvironment [-Environment] <String> [-Name <String>] [<CommonParameters>]
+New-VagrantSnapshot [-Environment <String>] [-Name <String>] [<CommonParameters>]
 ```
 
-### Id
+### Sahara
 ```
-Start-VagrantEnvironment -Id <String> [<CommonParameters>]
+New-VagrantSnapshot [-Environment <String>] [-UseSahara] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Reads the backend path to a vagrant directory and starts that environment based on the environment's friendly name
+Snapshots a Vagrant VM using either built-in tooling, or the Sahara plugin
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Start-VagrantEnvironment -Environment CCM
+New-VagrantSnapshot -Environment MyAwesomeEnv
 ```
-
-Turn on all hosts defined in the CCM Vagrantfile
 
 ### EXAMPLE 2
 ```
-Start-VagrantEnvironment -Environment CCM -Name client
+New-VagrantSnapshot -Environment MyAwesomeEnv -UseSahara
 ```
-
-Only turn on the client defined in the CCM Vagrantfile
 
 ### EXAMPLE 3
 ```
-Start-VagrantEnvironment -Id a23459ef
+New-VagrantSnapshot -Environment MyAwesomeEnv -Name TestSnapshot
 ```
-
-Bring up specified vagrant ID
 
 ## PARAMETERS
 
 ### -Environment
-The friendly name of the vagrant environment to start
+The Vagrant Environment to snapshot
 
 ```yaml
 Type: String
-Parameter Sets: Environment
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Name of host in Vagrantfile to bring online, if multiple are defined in Vagrantfile.
-
-```yaml
-Type: String
-Parameter Sets: Environment
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -80,17 +59,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
-Id of Vagrant environment to start, not tied to Environment parameter.
+### -Name
+If desired, give the snapshot a friendly name, otherwise a random name will be given by vagrant
 
 ```yaml
 Type: String
-Parameter Sets: Id
+Parameter Sets: BuiltIn
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseSahara
+Force the use of the Sahara plugin
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Sahara
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -103,5 +97,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+General notes
 
 ## RELATED LINKS
