@@ -8,6 +8,9 @@ function Get-VagrantPlugin {
     
     .PARAMETER Plugin
     The plugin to return
+
+    .PARAMETER Installed
+    Returns all installed Vagrant Plugins
     
     .EXAMPLE
     Get-VagrantPlugin
@@ -16,6 +19,9 @@ function Get-VagrantPlugin {
 
     .EXAMPLE
     Get-VagrantPlugin -Plugin vagrant-yaml
+
+    .EXAMPLE
+    Get-VagrantPlugin -Installed
 
     Returns the information for the vagrant-yaml plugin
     
