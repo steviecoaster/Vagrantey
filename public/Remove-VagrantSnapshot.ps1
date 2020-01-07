@@ -28,7 +28,7 @@ function Remove-VagrantSnapshot {
    
     #>
     
-    [cmdletBinding(DefaultParameterSetName="BuiltIn")]
+    [cmdletBinding(DefaultParameterSetName="BuiltIn",SupportsShouldProcess,ConfirmImpact="High")]
     Param(
 
         [Parameter(Mandatory)]
@@ -75,13 +75,17 @@ function Remove-VagrantSnapshot {
                     Push-Location "$($config.$Environment)"
                     if (!$Name) {
 
+                        If($PSCmdlet.ShouldProcess($Environment,"Remove snapshot")){
                         vagrant snapshot pop
+                        }
 
                     }
         
                     else {
-        
+                        
+                        if($PSCmdlet.ShouldProcess($Name,"Remove specified snapshot")){
                         vagrant snapshot delete $Name
+                        }
 
                     }
 
@@ -94,7 +98,9 @@ function Remove-VagrantSnapshot {
                     }
         
                     Push-Location "$($config.$Environment)"
+                    if($PSCmdlet.ShouldProcess($Environment,"Remove snapshot")){
                     vagrant sandbox rollback
+                    }
                     Pop-Location
                 }
             }
