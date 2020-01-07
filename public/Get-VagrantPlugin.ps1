@@ -27,26 +27,54 @@ function Get-VagrantPlugin {
     Param(
         [Parameter()]
         [String]
-        $Plugin
+        $Plugin,
+
+        [Parameter()]
+        [Switch]
+        $Installed
     )
 
     process {
 
         $plugins = gem list --remote vagrant-
 
-        if($Plugin){
+        if ($Plugin) {
             $plugins = $plugins | Where-Object { $_ -match "$Plugin" }
         }
 
-        $plugins | ForEach-Object {
+        If ($Installed) {
 
-            $Name = $_.Split(' ')[0]
-            $Version = ($_.split(' ')[1]).Replace('(','').replace(')','')
-            [pscustomobject]@{
-                Name = $Name
-                Version = $Version
+            $installedPlugins = vagrant plugin list
+
+            $installedPlugins | ForEach-Object {
+
+                $Name = $_.Split(' ')[0]
+                $Version = ($_.SPlit(' ')[1].Replace('(', '').Replace(',',''))
+                $Scope = ($_.Split(' ')[2].Replace(')',''))
+
+                [pscustomobject]@{
+                    Name = $Name
+                    Version = $Version
+                    Scope = $Scope
+                }
 
             }
+
+        }
+
+        Else {
+        
+            $plugins | ForEach-Object {
+
+                $Name = $_.Split(' ')[0]
+                $Version = ($_.split(' ')[1]).Replace('(', '').replace(')', '')
+                [pscustomobject]@{
+                    Name    = $Name
+                    Version = $Version
+
+                }
+            }
+
         }
     }
 
