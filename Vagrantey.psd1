@@ -12,7 +12,7 @@
 RootModule = 'Vagrantey.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.8'
+ModuleVersion = '0.1.9'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -82,7 +82,10 @@ FunctionsToExport = @('Get-VagrantConfig',
 'Get-VagrantSnapshot',
 'New-VagrantSnapshot',
 'Remove-VagrantSnapshot',
-'Restore-VagrantSnapshot')
+'Restore-VagrantSnapshot',
+'Get-VagrantBox',
+'Remove-VagrantBox',
+'Update-VagrantBox')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
