@@ -28,8 +28,21 @@ The following cmdlets are available:
 
 - Get-VagrantConfig
 - Set-VagrantConfig
+- Get-VagrantEnvironment
 - Start-VagrantEnvironment
-- Remove-VagrantEnvironment (equivalent to `vagrant destroy -f`)
+- Stop-VagrantEnvironment
+- Remove-VagrantEnvironment
+- Invoke-VagrantProvisioner
+- Get-VagrantPlugin
+- Remove-VagrantPlugin
+- Install-VagrantPlugin
+- Get-VagrantSnapshot
+- New-VagrantSnapshot
+- Remove-VagrantSnapshot
+- Restore-VagrantSnapshot
+- Get-VagrantBox
+- Remove-VagrantBox
+- Update-VagrantBox
 
 ## Documentation
 
