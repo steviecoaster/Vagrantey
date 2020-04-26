@@ -26,7 +26,7 @@ function Get-VagrantEnvironment {
 
         Foreach($environment in $environments){
 
-            if($environment -match "^(?<id>[\w]+)\s+(?<name>[\w\-._]+)\s+(?<provider>[\w]+)\s+(?<state>[\w]+)\s+(?<path>[\/\-\w]+)"){
+            if($environment -match "^(?<id>[\w]+)\s+(?<name>[\w\-._]+)\s+(?<provider>[\w]+)\s+(?<state>[\w]+)\s+(?<path>[\/\-\w:]+)"){
            
                 [pscustomobject]@{
                     Id = $matches.id
