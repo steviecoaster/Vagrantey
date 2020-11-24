@@ -16,18 +16,24 @@ function Get-VagrantEnvironment {
     #>
     
     [cmdletBinding()]
-    Param()
+    Param(
+        [switch]
+        $All
+    )
 
     process {
-        
-        $environments = vagrant global-status
-        
-        $environments = $environments[2..$($environments.Length-8)]
-
+        $command = 'status'
+        $extraLines = 4
+        if($All){
+            $command = 'global-status'
+            $extraLines = 8
+        }
+        $environments = & vagrant $command
+        $environments = $environments[2..$($environments.Length - $extraLines)]
         Foreach($environment in $environments){
 
+            # This is global-status environments
             if($environment -match "^(?<id>[\w]+)\s+(?<name>[\w\-._]+)\s+(?<provider>[\w]+)\s+(?<state>[\w]+)\s+(?<path>[\/\-\w:]+)"){
-           
                 [pscustomobject]@{
                     Id = $matches.id
                     Name = $matches.name
@@ -37,9 +43,17 @@ function Get-VagrantEnvironment {
                 }
             
             }
+            # This is status environments
+            if($environment -match "^(?<name>[\w\-._]+)\s+(?<state>[\w]+)\s+\((?<provider>[\w]+)\)"){
+                [pscustomobject]@{
+                    Name = $matches.name
+                    Provider = $matches.provider
+                    State = $matches.state
+                }
+            
+            }
             
         }
-     
     }
 
 }
